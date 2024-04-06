@@ -1,0 +1,9 @@
+- name: Manual
+  href: manual/
+  homepage: manual/introduction.md
+- name: Scripting API
+  href: api/
+  homepage: api/index.md
+- name: Changelog
+  href: changelog/
+  homepage: changelog/CHANGELOG.md
