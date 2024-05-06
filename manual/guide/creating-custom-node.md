@@ -11,203 +11,6 @@ There are three possible ways you are able to create nodes in uNode:
 
 Creating Nodes using HL API is the most easy and direct way of creating custom nodes for uNode. To do so, you need to derive from one of the available types.
 
-### IFlowNode
-
-Implement `IFlowNode` to create flow node that has one input and output flow port. They usually perform logical decisions or operations/actions. They execute in a single frame, when triggered.  To implement it you must implement `void Execute(object graph)` method.
-
-Examples:
-
-Log a message to the console:
-
-```cs
-using UnityEngine;
-namespace MaxyGames.UNode.Nodes {
-	[NodeMenu("Flow", "Log Message")] //Add the node to the menu
-	public class LogMessage : IFlowNode {
-		[Input(description = "The message to log")]
-		public string message;
-
-		public void Execute(object graph) {
-			Debug.Log(message);
-		}
-	}
-}
-```
-
-Result Node:
-
-![](../../images/guide/custom-node_HLNode-Log-Message.png)
-
-### IStateNode
-
-Implement `IStateNode` to create flow node that has one input and 3 output ( success, failure, finished ). The state node are just like an IF Node they are executed and compare the return state true or false. They execute in a single frame, when triggered. To implement it you must implement `bool Execute(object graph)` method.
-
-Examples:
-
-```cs
-using UnityEngine;
-namespace MaxyGames.UNode.Nodes {
-  [NodeMenu("Flow", "Is All True")] //Add the node to the menu
-	public class IsTrue : IStateNode {
-		[Input]
-		public bool first;
-		[Input]
-		public bool second;
-
-		public bool Execute(object graph) {
-			return first && second;
-		}
-	}
-}
-```
-
-### ICoroutineNode
-
-Implement `ICoroutineNode` to create coroutine node that has one input and output. They can execute in a multiple frame, when triggered.  To implement it you must implement `IEnumerable Execute(object graph)` method.
-
-
-Examples:
-
-```cs
-using UnityEngine;
-namespace MaxyGames.UNode.Nodes {
-  [NodeMenu("Coroutine", "Wait for second", IsCoroutine = true)]
-  public class WaitForSecond : ICoroutineNode {
-    [Input]
-    public float waitTime;
-
-    public IEnumerable Execute(object graph) {
-      yield return new WaitForSeconds(waitTime);
-    }
-  }
-}
-```
-
-And:
-
-```cs
-using UnityEngine;
-
-namespace MaxyGames.UNode.Nodes {
-  [NodeMenu("Flow", "Animate Float", IsCoroutine = true)]
-  public class AnimateFloat : ICoroutineNode {
-    [Input]
-    public AnimationCurve curve;
-    [Input]
-    public float time;
-    [Input]
-    public float speed;
-
-    float currentTime;
-    float endTime;
-
-    public IEnumerable Execute(object graph) {
-      currentTime = 0;
-      endTime = curve.keys[curve.length - 1].time;
-      while(currentTime < endTime) {
-        currentTime += Time.deltaTime * speed;
-        time = curve.Evaluate(currentTime);
-        yield return null;
-      }
-    }
-  }
-}
-```
-
-### IStateCoroutineNode
-
-Implement `IStateCoroutineNode` to create state node that can be run in multiple frame. The node will have one input and 3 output (success, failure, finished ). To implement it you must implement `IEnumerable Execute(object graph)` method.
-
-Yield Commands:
-- ```cs
-	yield return break; 
-	```
-  will finish the coroutine with the success state and execute On Success flow.
-- ```cs
-	yield return true; and => yield return false;
-	```
-  will finish the coroutine with success state and execute On Success flow.
-
-- ```cs
-	yield return false; and => yield return “Failure”; 
-	```
-  will finish the coroutine with failure state and execute On Failure flow. <br> When the Execute function is finished without above command the node will finish with success state.
-
-Examples:
-
-Following object:
-```cs
-using UnityEngine;
-using UnityEngine.AI;
-
-namespace MaxyGames.UNode.Nodes {
-  [NodeMenu("State", "Follow", IsCoroutine = true)] //Add the node to menu, and ensure the node is not available to non coroutine graph
-	public class Follow : IStateCoroutineNode {
-		[Input(description = "The agent to follow the target")]
-		public NavMeshAgent agent;
-		[Input(description = "The target to follow")]
-		public GameObject target;
-		[Input(description = "The distance to stop the agent")]
-		public float stopDistance = 10;
-		[Input(description = "The duration the agent to stop following")]
-		public float timeoutDuration = 15;
-
-		public IEnumerable Execute(object graph) {
-			//Cache the current time
-			float time = Time.time;
-			//Move the agent
-			agent.SetDestination(target.transform.position);
-			while(true) {
-				if(Vector3.Distance(agent.transform.position, target.transform.position) < stopDistance) {
-					//Stop the agent if its in range
-					agent.isStopped = true;
-					//Return a success state, and this command should stop the coroutine.
-					yield return true;
-				}
-				else if(Time.time - time > timeoutDuration) {
-					//Stop the agent
-					agent.isStopped = true;
-					//Return a failure state, and this command should stop the coroutine.
-					yield return false;
-				}
-				//Wait for the next frame
-				yield return null;
-			}
-		}
-	}
-}
-```
-
-Result Node:
-
-![](../../images/guide/custom-node_HLNode-Follow.png)
-
-### DataNode<T>
-
-Implement `DataNode<T>` to create data node with one output value and the T is the output type. They are executed only when an output value is read by another node. To implement it you must override `T GetValue(object graph)`.
-
-Examples:
-```cs
-using UnityEngine;
-namespace MaxyGames.UNode.Nodes {
-  [NodeMenu("Data", "Max")]
-  public class MaxNode : DataNode<float> {
-    [Input]
-    public float first;
-    [Input]
-    public float second;
-
-    public override float GetValue(object graph) {
-      return Mathf.Max(first, second);
-    }
-  }
-}
-```
-
-Result Node:
-
-![](../../images/guide/custom-node_HLNode-Max.png)
-
 ### IInstanceNode
 
 Implement `IInstanceNode` to create node that can use multiple input and output for both flow and value ports.
@@ -502,3 +305,201 @@ namespace MaxyGames.UNode.Nodes {
 	}
 }
 ```
+
+### IFlowNode
+
+Implement `IFlowNode` to create flow node that has one input and output flow port. They usually perform logical decisions or operations/actions. They execute in a single frame, when triggered.  To implement it you must implement `void Execute(object graph)` method.
+
+Examples:
+
+Log a message to the console:
+
+```cs
+using UnityEngine;
+namespace MaxyGames.UNode.Nodes {
+	[NodeMenu("Flow", "Log Message")] //Add the node to the menu
+	public class LogMessage : IFlowNode {
+		[Input(description = "The message to log")]
+		public string message;
+
+		public void Execute(object graph) {
+			Debug.Log(message);
+		}
+	}
+}
+```
+
+Result Node:
+
+![](../../images/guide/custom-node_HLNode-Log-Message.png)
+
+### IStateNode
+
+Implement `IStateNode` to create flow node that has one input and 3 output ( success, failure, finished ). The state node are just like an IF Node they are executed and compare the return state true or false. They execute in a single frame, when triggered. To implement it you must implement `bool Execute(object graph)` method.
+
+Examples:
+
+```cs
+using UnityEngine;
+namespace MaxyGames.UNode.Nodes {
+  [NodeMenu("Flow", "Is All True")] //Add the node to the menu
+	public class IsTrue : IStateNode {
+		[Input]
+		public bool first;
+		[Input]
+		public bool second;
+
+		public bool Execute(object graph) {
+			return first && second;
+		}
+	}
+}
+```
+
+### ICoroutineNode
+
+Implement `ICoroutineNode` to create coroutine node that has one input and output. They can execute in a multiple frame, when triggered.  To implement it you must implement `IEnumerable Execute(object graph)` method.
+
+
+Examples:
+
+```cs
+using UnityEngine;
+namespace MaxyGames.UNode.Nodes {
+  [NodeMenu("Coroutine", "Wait for second", IsCoroutine = true)]
+  public class WaitForSecond : ICoroutineNode {
+    [Input]
+    public float waitTime;
+
+    public IEnumerable Execute(object graph) {
+      yield return new WaitForSeconds(waitTime);
+    }
+  }
+}
+```
+
+And:
+
+```cs
+using UnityEngine;
+
+namespace MaxyGames.UNode.Nodes {
+  [NodeMenu("Flow", "Animate Float", IsCoroutine = true)]
+  public class AnimateFloat : ICoroutineNode {
+    [Input]
+    public AnimationCurve curve;
+    [Input]
+    public float time;
+    [Input]
+    public float speed;
+
+    float currentTime;
+    float endTime;
+
+    public IEnumerable Execute(object graph) {
+      currentTime = 0;
+      endTime = curve.keys[curve.length - 1].time;
+      while(currentTime < endTime) {
+        currentTime += Time.deltaTime * speed;
+        time = curve.Evaluate(currentTime);
+        yield return null;
+      }
+    }
+  }
+}
+```
+
+### IStateCoroutineNode
+
+Implement `IStateCoroutineNode` to create state node that can be run in multiple frame. The node will have one input and 3 output (success, failure, finished ). To implement it you must implement `IEnumerable Execute(object graph)` method.
+
+Yield Commands:
+- ```cs
+	yield return break; 
+	```
+  will finish the coroutine with the success state and execute On Success flow.
+- ```cs
+	yield return true; and => yield return false;
+	```
+  will finish the coroutine with success state and execute On Success flow.
+
+- ```cs
+	yield return false; and => yield return “Failure”; 
+	```
+  will finish the coroutine with failure state and execute On Failure flow. <br> When the Execute function is finished without above command the node will finish with success state.
+
+Examples:
+
+Following object:
+```cs
+using UnityEngine;
+using UnityEngine.AI;
+
+namespace MaxyGames.UNode.Nodes {
+  [NodeMenu("State", "Follow", IsCoroutine = true)] //Add the node to menu, and ensure the node is not available to non coroutine graph
+	public class Follow : IStateCoroutineNode {
+		[Input(description = "The agent to follow the target")]
+		public NavMeshAgent agent;
+		[Input(description = "The target to follow")]
+		public GameObject target;
+		[Input(description = "The distance to stop the agent")]
+		public float stopDistance = 10;
+		[Input(description = "The duration the agent to stop following")]
+		public float timeoutDuration = 15;
+
+		public IEnumerable Execute(object graph) {
+			//Cache the current time
+			float time = Time.time;
+			//Move the agent
+			agent.SetDestination(target.transform.position);
+			while(true) {
+				if(Vector3.Distance(agent.transform.position, target.transform.position) < stopDistance) {
+					//Stop the agent if its in range
+					agent.isStopped = true;
+					//Return a success state, and this command should stop the coroutine.
+					yield return true;
+				}
+				else if(Time.time - time > timeoutDuration) {
+					//Stop the agent
+					agent.isStopped = true;
+					//Return a failure state, and this command should stop the coroutine.
+					yield return false;
+				}
+				//Wait for the next frame
+				yield return null;
+			}
+		}
+	}
+}
+```
+
+Result Node:
+
+![](../../images/guide/custom-node_HLNode-Follow.png)
+
+### DataNode<T>
+
+Implement `DataNode<T>` to create data node with one output value and the T is the output type. They are executed only when an output value is read by another node. To implement it you must override `T GetValue(object graph)`.
+
+Examples:
+```cs
+using UnityEngine;
+namespace MaxyGames.UNode.Nodes {
+  [NodeMenu("Data", "Max")]
+  public class MaxNode : DataNode<float> {
+    [Input]
+    public float first;
+    [Input]
+    public float second;
+
+    public override float GetValue(object graph) {
+      return Mathf.Max(first, second);
+    }
+  }
+}
+```
+
+Result Node:
+
+![](../../images/guide/custom-node_HLNode-Max.png)
+

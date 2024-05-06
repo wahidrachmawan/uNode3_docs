@@ -10,6 +10,7 @@ Here is the graph that is categorized as Runtime Graphs:
 
 - Class Definition ( Class Component, Class Asset, and all of class definition models )
 - Graph Component
+
 <!-- - Class Singleton -->
 
 ## C# Graphs
@@ -28,37 +29,36 @@ Here is the graph that is categorized as C# Graphs:
 uNode has many different types of graphs, each of them can serve for different purpose.
 Here is the list of avalaible graphs types:
 
+| Graph           | Description                                                                                                                                                                                                       |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Class Component | A `Class Definition` model that inherited from MonoBehaviour                                                                                                                                                    |
+| Class Asset     | A `Class Definition` model that inherited from ScriptableAsset                                                                                                                                                  |
+| Class Object    | A `Class Definition` model that inherited from System.Object                                                                                                                                                    |
+| Class Singleton | A runtime graph that's inherit from MonoBehaviour but act like Static Classes `<br>` This graph can be accessed from anywhere but it is guarantee that this graph only one instance can exist at the same time. |
+| Graph Component | A graph like Class Component but added directly to GameObjects via 'add component'. It can reference any object in its current scene                                                                              |
+| C# Class        | A c# graph that's intended for visually creating c# class. It can be inherited from any of C# Scripts and implementing any of C# Interfaces                                                                       |
+| C# Struct       | A c# graph that's intended for visually creating c# struct. It can implementing any of C# Interfaces                                                                                                              |
 
-| Graph           | Description                                                                                                                                                                                                  |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Class Component | A `Class Definition` model that inherited from MonoBehaviour                                                                                                                                                            |
-| Class Asset     | A `Class Definition` model that inherited from ScriptableAsset                                                                                                                                                          |
-| Class Singleton | A runtime graph that's inherit from MonoBehaviour but act like Static Classes<br> This graph can be accessed from anywhere but it is guarantee that this graph only one instance can exist at the same time. |
-| Graph Component   | A graph like Class Component but added directly to GameObjects via 'add component'. It can reference any object in its current scene                            |
-| C# Class        | A c# graph that's intended for visually creating c# class. It can be inherited from any of C# Scripts and implementing any of C# Interfaces                                                                  |
-| C# Struct       | A c# graph that's intended for visually creating c# struct. It can implementing any of C# Interfaces                                                                                                         |
+### Graphs Features
 
-### Graphs Features 
+Legend:`<br>`
+✅	= Supported `<br>`
+❌	= Not Supported `<br>`
+⚬	= Partially Supported `<br>`
 
-Legend:<br>
-✅	= Supported<br>
-❌	= Not Supported<br>
-⚬	= Partially Supported<br>
-
-
-| Features            | Class Component |   Class Asset    | Class Singleton |     C# Class      |  C# Struct   | Graph Component |
-| :------------------ | :-------------: | :--------------: | :-------------: | :---------------: | :----------: | :-----------: |
-| **Variable**        |       ✅        |        ✅        |       ✅        |        ✅         |      ✅      |      ✅       |
-| **Property**        |       ✅        |        ✅        |       ✅        |        ✅         |      ✅      |      ✅       |
-| **Function**        |       ✅        |        ✅        |       ✅        |        ✅         |      ✅      |      ✅       |
-| **Constructor**     |       ❌        |        ❌        |       ❌        |        ✅         |      ✅      |      ❌       |
-| **State Graph**     |       ✅        |        ❌        |       ✅        |        ✅         |      ❌      |      ✅       |
-| **Live Edit**       |       ✅        |        ✅        |       ✅        |        ❌         |      ❌      |      ✅       |
-| **Reflection Mode** |       ✅        |        ✅        |       ✅        |        ❌         |      ❌      |      ✅       |
-| **Attributes**      |       ⚬        |        ⚬        |       ⚬        |        ✅         |      ✅      |      ❌       |
-| **Modifiers**       |       ⚬        |        ⚬        |       ⚬        |        ✅         |      ✅      |      ❌       |
-| **Inheritance**     |  MonoBehaviour  | ScriptableObject |  MonoBehaviour  | ✅ Any C# Classes |      ❌      | MonoBehaviour |
-| **Interfaces**      | Graph Interface | Graph Interface  | Graph Interface |   C# Interface    | C# Interface |      ❌       |
+| Features                  | Class Component |    Class Asset    | Class Singleton |     C# Class     |  C# Struct  | Graph Component |
+| :------------------------ | :-------------: | :----------------: | :-------------: | :---------------: | :----------: | :-------------: |
+| **Variable**        |       ✅       |         ✅         |       ✅       |        ✅        |      ✅      |       ✅       |
+| **Property**        |       ✅       |         ✅         |       ✅       |        ✅        |      ✅      |       ✅       |
+| **Function**        |       ✅       |         ✅         |       ✅       |        ✅        |      ✅      |       ✅       |
+| **Constructor**     |       ❌       |         ❌         |       ❌       |        ✅        |      ✅      |       ❌       |
+| **State Graph**     |       ✅       |         ❌         |       ✅       |        ✅        |      ❌      |       ✅       |
+| **Live Edit**       |       ✅       |         ✅         |       ✅       |        ❌        |      ❌      |       ✅       |
+| **Reflection Mode** |       ✅       |         ✅         |       ✅       |        ❌        |      ❌      |       ✅       |
+| **Attributes**      |       ⚬       |         ⚬         |       ⚬       |        ✅        |      ✅      |       ❌       |
+| **Modifiers**       |       ⚬       |         ⚬         |       ⚬       |        ✅        |      ✅      |       ❌       |
+| **Inheritance**     | ✅MonoBehaviour | ✅ScriptableObject |       ❌       | ✅ Any C# Classes |      ❌      |       ❌       |
+| **Interfaces**      | Graph Interface |  Graph Interface  | Graph Interface |   C# Interface   | C# Interface |       ❌       |
 
 Features Description
 
@@ -66,7 +66,7 @@ Features Description
 - Live Edit	: For live editing graph during playmode.
 - Attributes	: Attributes for classes, variables, properties, and functions. A partial mean that the attributes is only work on running with Native C# mode.
 - Modifiers	: Modifiers for classes, variables, properties, and functions. A partial mean that it only have public and private modifier.
-- Inheritance	: Default graph inheritance.
+- Inheritance	: Support of Inheritance. Inheritance enables you to create new graph that reuse, extend, and modify the behavior defined in other graph / c# classes.
 - Interfaces	: The supported interface implementations, it is C# Interface of Graph Interface.
 
 ## Types of Graph Canvas

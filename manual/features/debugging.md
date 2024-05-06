@@ -11,8 +11,6 @@ For debuggin graph by selecting the Game Object in heirarchy here is the steps:
 2. `Navigate` to inspector
 3. Click on the `Edit Graph`
 
-![](../../images/guide/graph_debuggin-reflection1.png)
-
 For debuggin graph from the graph asset, here is the steps:
 
 1. Open graph you want to debug
