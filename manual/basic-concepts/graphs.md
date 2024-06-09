@@ -63,11 +63,11 @@ Legend:`<br>`
 Features Description
 
 - Reflection Mode	: For executing graph with reflection mode.
-- Live Edit	: For live editing graph during playmode.
-- Attributes	: Attributes for classes, variables, properties, and functions. A partial mean that the attributes is only work on running with Native C# mode.
-- Modifiers	: Modifiers for classes, variables, properties, and functions. A partial mean that it only have public and private modifier.
-- Inheritance	: Support of Inheritance. Inheritance enables you to create new graph that reuse, extend, and modify the behavior defined in other graph / c# classes.
-- Interfaces	: The supported interface implementations, it is C# Interface of Graph Interface.
+- Live Edit			: For live editing graph during playmode.
+- Attributes		: Attributes for classes, variables, properties, and functions. A partial mean that the attributes is only work on running with Native C# mode.
+- Modifiers			: Modifiers for classes, variables, properties, and functions. A partial mean that it only have public and private modifier.
+- Inheritance		: Support of Inheritance. Inheritance enables you to create new graph that reuse, extend, and modify the behavior defined in other graph / c# classes.
+- Interfaces		: The supported interface implementations, it is C# Interface of Graph Interface.
 
 ## Types of Graph Canvas
 
