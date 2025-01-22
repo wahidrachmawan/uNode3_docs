@@ -34,7 +34,7 @@ You can either compile it indivually or compile all the c# graphs in the project
 
 uNode comes with the auto c# code generation on build, this will make your game get the best performance by running it with native c# code instead of reflection.
 
-The auto compile on build can also be disable from the uNode [Preference](preferences.md).
+The auto compile on build can also be disable from the uNode [Preference](../user-interfaces/preferences.md).
 
 > [!NOTE]
 > Auto compile on build features only compile Runtime Graphs that's existed on the project.

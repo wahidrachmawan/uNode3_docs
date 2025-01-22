@@ -2,8 +2,6 @@
   href: compiling.md
 - name: Debugging
   href: debugging.md
-- name: Preferences
-  href: preferences.md
 - name: Smart Node Connections
   href: smart-connection.md
 - name: C# Parser

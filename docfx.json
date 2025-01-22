@@ -55,14 +55,19 @@
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
-      "default",
-	  	"templates/unode"
+      "default"
     ],
     "postProcessors": [],
     "markdownEngineName": "markdig",
     "noLangKeyword": false,
     "keepFileLink": false,
     "cleanupCacheHistory": false,
-    "disableGitFeatures": false
+    "disableGitFeatures": false,
+    "globalMetadata": {
+		"_appFaviconPath": "images/favicon.ico",
+		"_appLogoPath": "images/logo.svg",
+		"_enableSearch": true,
+		"pdf": false
+	  }
   }
 }
