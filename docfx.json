@@ -67,7 +67,7 @@
     "globalMetadata": {
 		"_appFaviconPath": "images/favicon.ico",
 		"_appLogoPath": "images/logo.svg",
-		"_enableSearch": true,
+		"_enableSearch": false,
 		"pdf": false
 	  }
   }
