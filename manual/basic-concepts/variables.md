@@ -13,4 +13,3 @@ Rules for Naming Variables
 - Variable names can contain the letters ‘a-z’ or ’A-Z’ or digits 0-9 as well as the character ‘_’.
 - The name of the variables cannot be started with a digit.
 - The name of the variable cannot be any [C# keyword](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/) say int, float, null, string, etc.
-

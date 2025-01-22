@@ -8,6 +8,8 @@
   href: guide/toc.yml
 - name: Features
   href: features/toc.yml
+- name: User Interfaces
+  href: user-interfaces/toc.yml
 - name: Graph Reference
   href: graph-reference/toc.yml
   # topicHref: basic-concepts/basic-concepts.md

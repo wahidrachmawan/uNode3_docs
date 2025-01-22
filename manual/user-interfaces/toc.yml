@@ -1,0 +1,12 @@
+- name: Bookmarks
+  href: bookmarks.md
+- name: Global Search
+  href: global-search.md
+- name: Graph Hierarchy
+  href: graph-hierarchy.md
+- name: Node Browser
+  href: node-browser.md
+- name: Node Creator Wizard
+  href: node-creator-wizard.md
+- name: Preferences
+  href: preferences.md

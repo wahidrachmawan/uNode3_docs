@@ -6,7 +6,7 @@
   href: preferences.md
 - name: Smart Node Connections
   href: smart-connection.md
-- name: C# Parser add-ons
+- name: C# Parser
   href: cs-parser.md
-- name: Unity Visual Scripting converter add-ons
-  href: uvs-converter.md
+# - name: Unity Visual Scripting converter add-ons
+#   href: uvs-converter.md

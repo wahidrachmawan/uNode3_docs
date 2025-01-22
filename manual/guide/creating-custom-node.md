@@ -10,6 +10,7 @@ There are three possible ways you are able to create nodes in uNode:
 ## Creating Nodes using High Level API
 
 Creating Nodes using HL API is the most easy and direct way of creating custom nodes for uNode. To do so, you need to derive from one of the available types.
+<br>For more easy create custom node you can use [Node Creator Wizard](../user-interfaces/node-creator-wizard.md).
 
 ### IInstanceNode
 
