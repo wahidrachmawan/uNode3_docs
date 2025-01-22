@@ -55,7 +55,8 @@
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
-      "default"
+      "default",
+	  	"templates/unode"
     ],
     "postProcessors": [],
     "markdownEngineName": "markdig",
