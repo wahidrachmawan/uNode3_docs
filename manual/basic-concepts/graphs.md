@@ -83,12 +83,77 @@ In a Flow Graph, you can connect nodes together and use them to tell your applic
 
 Flow Graphs can access a large collection of nodes, which correspond to different features and functionality in the Unity Editor. You can access these nodes through uNode Item Selector.
 
-### State Graphs
+---
 
-Unlike others State based Visual Scripting like Playmaker or Unity Visual Scripting State Graph. In uNode, State Graph is a combination of Flow Graph and State Graph so you can mix the Flow nodes and State nodes in easier way. The State Graph is just like a Flow Graph but with additional functionality like:
+#### 🔁 Where Can You Use Flow Graphs?
 
-- In State Graph there's a special node that's only available in State Graphs like the Behavior Tree nodes and the State Nodes that act like Playmaker or Unity Visual Scripting's State Graph.
-- In State Graph each of flow node will have state that's is success, running or failure, a Actions nodes that's not have a condition is always have success state.
+Flow Graphs are used in multiple places in uNode:
+
+| Location                    | Purpose |
+|-----------------------------|---------|
+| **State Nodes**             | Define what happens on `On Enter`, `On Update`, and `On Exit` |
+| **Transition Nodes**        | Check if a condition is true before changing state |
+| **Functions and Event Graph**      | Build logic for `Start()`, `Update()`, or custom events |
+| **Constructors / Properties** | Initialize data or calculate values |
+
+---
+
+#### 🧱 What You Can Do in a Flow Graph
+
+| Action                  | Example |
+|-------------------------|---------|
+| Call methods            | `PlayAnimation("Run")` |
+| Set variables           | `Health = 0` |
+| Check conditions        | `if (distance < 5)` |
+| Use loops               | `for`, `while`, `foreach` |
+| Handle events           | `On Trigger Enter`, `On Click` |
+| Wait or delay           | `WaitForSeconds(1)` |
+| Branch logic            | `If`, `Switch`, `Sequence` |
+
+---
+
+#### 🔄 How Does a Flow Graph Work?
+
+1. The **flow starts** from an entry node like `Start`, `OnEnter`, or an event.
+2. It travels along **wires** flow connecting nodes.
+3. Each node performs a **action** (e.g., check condition, set value).
+4. The logic continues until it reaches the end or loops.
+
+---
+
+### State Machine Graphs
+
+In uNode Visual Scripting, a State Graph is the visual workspace where you build and manage a State Machine—a system that controls how your object behaves based on its current state.
+You can have multiple state graph inside one graph file.
+
+#### 🔄 What is a State Machine?
+
+A **State Machine** is a system where only **one state is active at a time**, and your object switches between states based on conditions or events.
+
+Examples of states:
+- Idle
+- Walk
+- Jump
+- Attack
+- Dead
+
+---
+
+#### 🎨 What is a State Graph?
+
+A **State Graph** is where you visually design and control a state machine using:
+- **State Nodes** for behaviors
+- **Transition Nodes** to move between states
+- **Any State Node** for global transitions
+- **Events** like `OnEnter`, `OnUpdate`, and `OnExit`
+
+Only one state runs at a time, and you define how and when states change.
+
+---
+
+#### 📦 Where Do I Find the State Graph in uNode?
+
+In uNode, the **State Graph is embedded inside a Class Definition or C# Graph**.
 
 The State Graphs is supported only on graph that's inherited from MonoBehavior or it's sub classes like:
 
@@ -96,3 +161,31 @@ The State Graphs is supported only on graph that's inherited from MonoBehavior o
 - Class Singleton
 - Graph Component
 - C# Class that's inherited from MonoBehaviour or it's sub classes.
+
+[Click me for how to create state machine](../guide/state-machines/creating-state.md)
+
+---
+
+#### 🔧 What You Can Do Inside a State Graph
+
+| Action                       | Description |
+|-----------------------------|-------------|
+| Add **State Nodes**         | Represent different behaviors (e.g., Idle, Run, Attack) |
+| Add **Transitions**         | Define how and when to switch between states |
+| Use **Any State Node**      | Jump to a state from any active state (like interrupt or death) |
+| Use **Nested States**       | Organize complex behavior into sub-graphs |
+| Edit **Event Logic**        | Customize behavior with `On Enter`, `On Update`, and `On Exit` or other event nodes |
+
+---
+
+#### ✅ Why Use a State Graph?
+
+- Clear and visual behavior control
+- Easier to debug and manage than big flow graphs
+- Great for:
+  - Character AI
+  - Menus
+  - Cutscenes
+  - Game flow (start, puase, game over)
+  - Animations
+- Supports modular design using Nested States

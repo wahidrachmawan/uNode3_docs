@@ -2,7 +2,28 @@
 
 ![](../../images/node-reference/set.png)
 
-The SetValue node is a node to Set value of a variable, and property.
+The **`SetValue` node** is used to **assign a value** to a target variable, or property. It updates the target with the specified input and continues execution after the assignment.
+
+### 🔧 How It Works
+
+- You provide a **target** (e.g., a variable, or property).
+- You provide a **value** that will be assigned to the target.
+- The node sets the value and then triggers the **Next** output for flow continuation.
+
+### 📥 Inputs
+
+| Port Name | Type   | Description                             |
+|-----------|--------|-----------------------------------------|
+| `Target`  | Any    | The variable, property, or field to set |
+| `Value`   | Any    | The value to assign to the target       |
+
+### ▶️ Control Flow
+
+| Port Name | Description                         |
+|-----------|-------------------------------------|
+| `Input`   | Flow input to trigger the node      |
+| `Next`    | Flow output after value is assigned |
+
 
 ## Examples
 

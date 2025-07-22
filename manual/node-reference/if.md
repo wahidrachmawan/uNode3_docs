@@ -2,11 +2,38 @@
 
 ![](../../images/node-reference/if.png)
 
-The `If` node Identifies which statement to run based on the value of a Boolean expression.
+The **`If` node** is a conditional branching node used to control logic flow based on whether a specified condition is `true` or `false`. 
 
-The `True` port will be executed if the input Condition is `true`, otherwise the `False` port will be executed.
+This node is essential for decision-making, allowing you to execute different sets of nodes depending on the result of a boolean condition.
 
-The `Finished` port will be executed once after the `True` or `False` port has been executed.
+---
+
+### 🔧 How It Works
+
+- The node evaluates a boolean condition.
+- If the condition is `true`, it executes the nodes connected to the **True** output.
+- If the condition is `false`, it executes the nodes connected to the **False** output.
+
+---
+
+### 📥 Inputs
+
+| Port Name   | Type   | Description                                 |
+|-------------|--------|---------------------------------------------|
+| `Condition` | Bool   | The boolean expression to evaluate          |
+| `Flow`      | Flow   | Execution flow input                        |
+
+---
+
+### 📤 Outputs
+
+| Port Name | Type   | Description                                           |
+|-----------|--------|-------------------------------------------------------|
+| `True`    | Flow   | Executed if the condition evaluates to `true`         |
+| `False`   | Flow   | Executed if the condition evaluates to `false`        |
+| `Next`   | Flow   | Executed after `True` or `False` flow is evaluated        |
+
+---
 
 ## Examples
 

@@ -307,6 +307,11 @@ namespace MaxyGames.UNode.Nodes {
 }
 ```
 
+
+
+
+<!-- Obsolete API
+
 ### IFlowNode
 
 Implement `IFlowNode` to create flow node that has one input and output flow port. They usually perform logical decisions or operations/actions. They execute in a single frame, when triggered.  To implement it you must implement `void Execute(object graph)` method.
@@ -503,4 +508,4 @@ namespace MaxyGames.UNode.Nodes {
 Result Node:
 
 ![](../../images/guide/custom-node_HLNode-Max.png)
-
+ -->

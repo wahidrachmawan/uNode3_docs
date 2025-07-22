@@ -2,3 +2,5 @@
   href: creating-custom-node.md
 - name: Class Component Guide
   href: class-component/toc.yml
+- name: State Machine Guide
+  href: state-machines/toc.yml

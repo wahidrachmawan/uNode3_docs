@@ -6,5 +6,20 @@
 /**/packages/
 /**/bin/
 /**/obj/
-/**/src/
+# /**/src/
 _site
+
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+#*.mdb
+*.opendb
+*.VC.db
