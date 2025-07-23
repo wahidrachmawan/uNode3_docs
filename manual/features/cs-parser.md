@@ -1,6 +1,6 @@
 # C# Parser
 
-C# Parser add-ons are used to import C# script to uNode.
+The C# Parser is a tool used to import C# scripts into uNode, this tool only available for **uNode Pro**.
 
 To open C# Parser, navigate to `Tools > uNode > C# Parser`
 

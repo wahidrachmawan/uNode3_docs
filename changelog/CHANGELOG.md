@@ -1,5 +1,70 @@
 # Changelog
 
+## v3.2.0
+- Added new State Machine graph and support for Class Component & C# Graph that inherit from MonoBehaviour
+- Added new Call Stack window, auto open when breakpoint is hit in playmode allowing for see the execution flows and has ability to highlight node, ping object, and open script.
+- Added ability to make connection by single click on the port ( no need to hold down left button )
+- Renamed State Graph to Event Graph
+- Improved C# Parser
+- Improved Code Generation
+- Improved Editor
+- Fixed most of reported bugs
+
+## v3.1.5
+- Added more drag & drop menu items
+- Improved Code Generation
+- Improved Editor
+- Fixed some bugs
+
+## v3.1.4
+- Added more option to configure sticky note style
+- Added setting for default access modifier for new property by @Miftachul-Huda
+- Added unscaled time on NodeTimer by @Miftachul-Huda
+- Improved Code Generation
+- Improved Editor
+- Remove generated script after build by @Miftachul-Huda
+- Fixed obselete warnings on unity 6 by @Miftachul-Huda
+- Fixed some bugs
+
+## v3.1.3
+- Added option to configure node icon in Node Creator Wizard
+- Improved C# Parser
+- Improved Editor
+- Fixed some bugs
+
+## v3.1.2
+- Added option to change max displayed recent items in Item Selector
+- Added option to hide sticky note title
+- Added option to configure summary for function parameters
+- Added new configure shortcut to open uNode Editor, Compile C# Graphs, and Compile Runtime Graphs
+- Improved Code Generation
+- Improved Editor
+- Fixed bug summary in variable is not included in c# output
+- Fixed reported bugs
+
+## v3.1.1
+- Improved C# Parser
+- Improved Editor
+- Fixed Cannot add override property from inherited c# graph
+- Fixed UI bug when editing list or array
+- Fixed UI bug when Inspecting node
+- Fixed Cut command is not working
+- Fixed Graph Converter is not working
+- Fixed sometime undo is not working
+- Fixed some bugs
+
+## v3.1.0
+- Improved Code Generation
+- Improved Editor
+- Improved Graph Component, prevent editing prefab instance but allow to override the variables this will ensure the Graph Component is using same graph with the original prefab.
+- Changes serialization behaviour, the graph will now serialized by Unity instead of Odin Serializer resulting in more fast editing graph, smaller file size, and version control friendly. ( This is breaking changes, make sure to backup your projects )
+- Fixed serialization error in build because of link.xml is not included on IL2CPP backend
+- Fixed some bugs
+
+## v3.0.8
+- Improved Editor
+- Fixed some bugs
+
 ## v3.0.7
 - Added default value support for parameters
 - Added Graph Inspector window, useful if needed to see both node properties and game object properties on the screen in the same time
